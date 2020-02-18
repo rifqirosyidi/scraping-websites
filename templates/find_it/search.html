@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--Start Feature Area -->
+
+<section class="feature-area">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-title text-center">
+                    <p>
+                        Menampilkan --- produk untuk Handphone
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="feature-inner row">
+            {% for title, price, image in products %}
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ image }}" class="bd-placeholder-img card-img-top img-fluid custom-height" width="100%" height="225">
+                    </img>
+                    <div class="card-body">
+                        <p class="card-text">{{ title }}</p>
+						<hr>
+                        <div class="d-flex justify-content-between">
+                            <p class="card-text">{{ price }}</p>
+                            <img style="height: 30px" class="img-fluid" src="{% static 'img/ecommerce/olx-logo.png' %}" alt="">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="genric-btn info radius">Kunjungi Toko</button>
+                            </div>
+                            <small class="text-muted">9 mins</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+<!-- End Feature Area -->
+
+
+<!-- Start Footer Area -->
+
+<!-- End Footer Area -->
+
+<!-- ####################### Start Scroll to Top Area ####################### -->
+<div id="back-top">
+    <a title="Go to Top" href="#"></a>
+</div>
+<!-- ####################### End Scroll to Top Area ####################### -->
+{% endblock content %}

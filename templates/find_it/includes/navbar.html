@@ -1,27 +1,17 @@
 {% load static %}
-<header id="header">
+<header id="header" style="background: #19363a">
 		<div class="container">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="index.html"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
+					<h2><a class="text-white font-acme" href="{% url 'home' %}">Find It</a></h2>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
-						<li class="menu-active"><a href="index.html">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="courses.html">Courses</a></li>
-						<li class="menu-has-children"><a href="">Pages</a>
-							<ul>
-								<li><a href="elements.html">Elements</a></li>
-							</ul>
-						</li>
-						<li class="menu-has-children"><a href="">Blog</a>
-							<ul>
-								<li><a href="blog-home.html">Blog Home</a></li>
-								<li><a href="blog-single.html">Blog Details</a></li>
-							</ul>
-						</li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="{% url 'home' %}">Home</a></li>
+						<li><a href="about.html">Kategori</a></li>
+						<li><a href="courses.html">Promo</a></li>
+						<li><a href="courses.html">Flash Sale</a></li>
+						<li><a href="contact.html">About Us</a></li>
 					</ul>
 				</nav><!-- #nav-menu-container -->
 			</div>

@@ -440,6 +440,9 @@ td, th {
 .font-righteous {
   font-family: 'Righteous', cursive; }
 
+.font-acme {
+    font-family: 'Acme', cursive; }
+
 .text-italic {
   font-style: italic; }
 
@@ -992,6 +995,11 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center center !important;
   background-size: cover !important;
   height: 200px; }
+
+.custom-height {
+  height: 200px !important;
+  object-fit: cover !important;
+  width: 100% !important; }
 
 .list-style {
   width: 14px;
@@ -1656,8 +1664,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-menu li:hover > a, .nav-menu > .menu-active > a {
   color: #fff;
-  font-weight: bold;
-  transition: .5s; }
+  transition: 0s;
+  border-bottom: 2px solid white; }
 
 .nav-menu > li {
   margin-left: 10px; }
