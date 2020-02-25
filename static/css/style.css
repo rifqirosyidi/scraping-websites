@@ -1,0 +1,143 @@
+.font-lobster {
+    font-family: 'Lobster Two', cursive;
+}
+
+.font-yahonee {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 17px;
+}
+
+.font-londrina {
+    font-family: 'Londrina Solid', cursive;
+}
+
+.font-fresca {
+    font-family: 'Fresca', sans-serif;
+}
+
+.size-font-10 {
+    font-size: 10px;
+}
+
+.size-font-12 {
+    font-size: 12px;
+}
+
+.size-font-14 {
+    font-size: 14px;
+}
+
+.size-font-16 {
+    font-size: 16px;
+}
+
+.size-font-18 {
+    font-size: 18px;
+}
+
+.size-font-20 {
+    font-size: 20px;
+}
+
+.px-10 {
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+.px-5 {
+    padding-top: 5px;
+    padding-bottom:5px;
+}
+
+.px-15 {
+    padding-top: 15px;
+    padding-bottom:15px;
+}
+
+.px-20 {
+    padding-top: 20px;
+    padding-bottom:20px;
+}
+
+.mx-3 {
+    margin: 3px 0px;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.source-title {
+    width: 100%;
+    background: #000000a6;
+    font-weight: bold;
+}
+
+.parallax-container {
+    height: 250px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* label color */
+   .input-field label {
+     color: #000;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: #000 !important;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid #000 !important;
+     box-shadow: 0 1px 0 0 #000 !important;
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid #000 !important;
+     box-shadow: 0 1px 0 0 #000 !important;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid #000;
+     box-shadow: 0 1px 0 0 #000;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #000;
+   }
+
+.flexbox {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flexbox .col {
+  flex-basis: 33.3%;
+}
+
+.flexbox-space-bet {
+    display: flex;
+    align-items: space-between;
+}
+
+.flexbox-space-bet .col {
+    padding: 0px;
+}
+
+.img-height-200 {
+    height: 200px;
+    object-fit: cover;
+}
+
+.float-right {
+    float: right;
+}
+
+.width-100-percent {
+    width: 100%;
+}

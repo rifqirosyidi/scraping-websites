@@ -2,58 +2,86 @@
 {% load static %}
 
 {% block content %}
-
-<!--Start Feature Area -->
-
-<section class="feature-area">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="section-title text-center">
-                    <p>
-                        Menampilkan --- produk untuk Handphone
-
-                    </p>
+<div class="container px-10">
+    <div class="row">
+        <div class="input-field col l10 s12">
+            <input autocomplete="off" placeholder="Search" id="search" required name="find" type="text"
+                   class="validate">
+            <label for="search">Cari Produk</label>
+        </div>
+        <div class="file-field input-field col l2 s12">
+            <button class="btn waves-effect waves-light blue darken-4 width-100-percent" type="submit">Search</button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col m6 offset-m6">
+            <div class="row">
+                <div class="input-field col m8">
+                    <select>
+                        <option value="" disabled selected>Pilih</option>
+                        <option value="relevant">Relevansi</option>
+                        <option value="price-high">Harga Tertinggi</option>
+                        <option value="price-low">Harga Terendah</option>
+                    </select>
+                    <label>Urutkan Berdasarkan</label>
+                </div>
+                <div class="file-field input-field col m4">
+                    <button class="btn waves-effect waves-light grey darken-4 width-100-percent">Terapkan</button>
                 </div>
             </div>
+
         </div>
-        <div class="feature-inner row">
-            {% for title, price, image in products %}
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{{ image }}" class="bd-placeholder-img card-img-top img-fluid custom-height" width="100%" height="225">
-                    </img>
-                    <div class="card-body">
-                        <p class="card-text">{{ title }}</p>
-						<hr>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">{{ price }}</p>
-                            <img style="height: 30px" class="img-fluid" src="{% static 'img/ecommerce/olx-logo.png' %}" alt="">
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="genric-btn info radius">Kunjungi Toko</button>
+    </div>
+</div>
+
+<div class="row mt-5">
+
+    <div class="col s12 m4 l3"> <!-- Note that "m4 l3" was added -->
+        {% include 'find_it/includes/sidebar.html' %}
+    </div>
+
+    <div class="col s12 m8 l9">
+
+        <div class="flexbox">
+            {% for title, price, image, location, date, source in products %}
+            <div class="col">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-height-200" src="{{ image }}">
+                    </div>
+                    <div class="card-content">
+                        <p>{{ title|title }}</p>
+                        <p><small>{{ date }}</small></p>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <p><b>{{ price }}</b></p>
+                                <p><small>{{ location }}</small></p>
                             </div>
-                            <small class="text-muted">9 mins</small>
+                            <div class="col" style="float: right">
+                                {% if source == 'olx' %}
+                                <img style="height: 40px" class="img-fluid"
+                                     src="{% static 'img/ecommerce/olx-logo.png' %}"
+                                     alt="">
+                                {% else %}
+                                <img style="height: 30px; float: right" class="img-fluid"
+                                     src="{% static 'img/ecommerce/uqi.jpg' %}"
+                                     alt="">
+                                {% endif %}
+                            </div>
                         </div>
+                    </div>
+                    <div class="card-action">
+                        <a class="waves-effect waves-light btn-small mx-3 blue darken-4 white-text"
+                           href="#">Kunjungi</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
-
         </div>
     </div>
-</section>
-<!-- End Feature Area -->
-
-
-<!-- Start Footer Area -->
-
-<!-- End Footer Area -->
-
-<!-- ####################### Start Scroll to Top Area ####################### -->
-<div id="back-top">
-    <a title="Go to Top" href="#"></a>
 </div>
-<!-- ####################### End Scroll to Top Area ####################### -->
+
 {% endblock content %}

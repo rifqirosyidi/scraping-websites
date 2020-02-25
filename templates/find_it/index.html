@@ -1,81 +1,73 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-	<section class="home-banner-area relative">
-		<div class="container">
-			<div class="row fullscreen d-flex align-items-center justify-content-center">
-				<div class="banner-content col-lg-8 col-md-12">
-					<h1 class="wow fadeIn" data-wow-duration="4s">Temukan Produk Anda <br> Sekarang Juga!</h1>
-					<p class="text-white">
-						Satu hal yang paling menyebalkan pada saat berbelanja online adalah menghabiskan waktu berjam-jam untuk mencari penawaran terbaik dari berbagai toko online.
-						Kami memberikan efisiensi waktu dalam mencari dan memilih barang yang anda inginkan.
-					</p>
+<div class="container">
+    <h4 class="text-center font-londrina px-15">Temukan Produk Anda <br>
+        Sekarang Juga!</h4>
+    <blockquote class="font-fresca size-font-16">
+        Satu hal yang paling menyebalkan pada saat berbelanja online adalah menghabiskan waktu berjam-jam untuk mencari
+        penawaran terbaik dari berbagai toko online.
+        Kami memberikan efisiensi waktu dalam mencari dan memilih barang yang anda inginkan.
+    </blockquote>
+</div>
 
-					<div class="input-wrap">
-						<form action="{% url 'search' %}" class="form-box d-flex justify-content-between">
-							<input type="text" placeholder="Cari Produk" class="form-control" name="find">
-							<button type="submit" class="btn search-btn">Search</button>
-						</form>
-					</div>
-					<h4 class="text-white">Pencarian Terakhir</h4>
+<!-- Start The Parallax -->
+<div class="parallax-container">
+    <div class="parallax"><img src="{% static 'img/header-2.jpg' %}"></div>
+</div>
+<div class="section white">
+    <div class="row container">
+        <h5 class="text-center font-londrina px-15">Cari Produk</h5>
+        <form action="{% url 'search' %}">
+            <div class="row">
+                <div class="input-field">
+                    <input autocomplete="off" placeholder="Search" id="search" required name="find" type="text"
+                           class="validate">
+                    <label for="search">Cari Produk</label>
+                    <div class="text-center">
+                        <button class="btn waves-effect waves-light blue darken-4" type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
 
-					<div class="courses pt-20">
-						{% for searched in latest_search %}
-						<a href="/search/?find={{searched}}" data-wow-duration="1s" data-wow-delay=".3s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">{{ searched }}</a>
-						{% endfor %}
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="rocket-img">
-			{% load static %}
-			<img src="{% static 'img/rocket.png' %}" alt="">
-		</div>
-	</section>
-	<!-- End Banner Area -->
+        <p class="text-center"><b>Pencarian Terakhir</b></p>
+        <div class="text-center col m6 offset-m3">
+            {% for searched in latest_search %}
+            {% if not searched == None %}
+            <a class="waves-effect waves-light btn-small mx-3 grey lighten-5 black-text "
+               href="/search/?find={{searched}}">{{ searched }}</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
+<div class="section grey lighten-4">
+    <div class="container">
+        <div class="text-center">
+            <h4 class="font-londrina">Our Source</h4>
+            <div class="row center">
+                {% for our_partner in our_partners %}
+                <div class="col m3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="responsive-img " src="{{ our_partner.logo.url }}">
+                            <span class="card-title source-title">{{ our_partner.name }}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>{{ our_partner.desc }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{{ our_partner.link }}">Kunjungi</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
-	<!-- Start Faculty Area -->
-	<section class="testimonials-area section-gap">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8">
-					<div class="text-center">
-						<h1>Our Source</h1>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center d-flex align-items-center">
-				{% for our_partner in our_partners %}
-				<div class="col-lg-3 col-md-6 col-sm-12 single-faculty">
-					<div class="thumb d-flex justify-content-center">
-						<img class="img-fluid" style="width: 50%" src="{{ our_partner.logo.url }}" alt="">
-					</div>
-					<div class="meta-text text-center">
-						<h4>{{ our_partner.name }}</h4>
-						<p class="designation"></p>
-						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
-							<p>
-								{{ our_partner.desc }}
-							</p>
-						</div>
-						<a href="{{ our_partner.link }}"><button class="genric-btn info-border">Kunjungi</button></a>
-					</div>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</section>
-	<!-- End Faculty Area -->
-
-
-	<!-- Start Footer Area -->
-
-	<!-- End Footer Area -->
-
-	<!-- ####################### Start Scroll to Top Area ####################### -->
-	<div id="back-top">
-		<a title="Go to Top" href="#"></a>
-	</div>
-	<!-- ####################### End Scroll to Top Area ####################### -->
 {% endblock content %}
