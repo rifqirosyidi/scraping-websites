@@ -117,7 +117,7 @@
 }
 
 .flexbox .col {
-  flex-basis: 33.3%;
+  flex-basis: 25%;
 }
 
 .flexbox-space-bet {
@@ -141,3 +141,13 @@
 .width-100-percent {
     width: 100%;
 }
+
+[type="checkbox"]:checked+span:not(.lever):before {
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #1d1d1d;
+}
+

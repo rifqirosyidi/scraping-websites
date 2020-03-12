@@ -1,6 +1,22 @@
-<div>
-    <h5>FILTER</h5>
-    <hr>
-    <h6><b>Source</b></h6>
+<div class="container">
 
+    <h5><b>Filter</b></h5>
+    <hr>
+    <div>
+        <p>MARKETPLACE SOURCE</p>
+        <form action="">
+            {% for source in sources %}
+            <p>
+                <label>
+                    <input type="checkbox"/>
+                    <span>{{ source }}</span>
+                </label>
+            </p>
+            {% endfor %}
+            <div>
+                <button class="btn waves-effect waves-light grey darken-4 width-100-percent" type="submit">Apply
+                </button>
+            </div>
+        </form>
+    </div>
 </div>

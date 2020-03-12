@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customlink %}
+<link rel="stylesheet" href="{% static 'css/style_flash.css' %}">
+<script src="{% static 'js/loadmore.js' %}"></script>
+{% endblock customlink%}
+
+
+{% block content %}
+<div class="container">
+    <h4 class="text-center font-londrina px-15">Flash Sale</h4>
+    <blockquote class="font-fresca size-font-16">
+        Penawaran Harga Terbaik! Diskon Produk Pilihan Update Tiap Hari.
+        Beli Sekarang Selama Persediaan Promo Masih Ada!.
+    </blockquote>
+</div>
+
+<!-- Start The Parallax -->
+<div class="parallax-container">
+    <div class="parallax"><img src="{% static 'img/flash/flash-banner.gif' %}"></div>
+</div>
+
+<!-- Flash Sale Elevenia-->
+
+<section>
+    <div class="container">
+        <h5 class="font-londrina">Elevenia Flashsale</h5>
+    </div>
+
+    <div class="row">
+        <div id="myList" class="flexbox">
+            {% for title, discount, price_before, price, image, source in flash_sale %}
+            <div id="itemList" class="col">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-height-200" src="{{ image }}">
+                        <span class="card-title source-title">{{ title |truncatechars:40 }}</span>
+                    </div>
+                    <div class="card-content">
+                        <div style="float: left; padding-right: 10px">
+                            <p class="discount-font orange-text">{{ discount }} <small>%</small></p>
+                        </div>
+                        <div>
+                            <small class="grey-text text-del">{{ price_before }}</small>
+                            <p><b>{{ price }}</b></p>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a class="waves-effect waves-light btn-small mx-3 blue darken-4 white-text"
+                           href="#">Kunjungi</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center">
+            <button id="showMore" class="btn waves-effect waves-light blue darken-3">Show More</button>
+            <button id="showLess" class="btn waves-effect waves-light grey">Less</button>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

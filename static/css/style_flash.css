@@ -1,0 +1,21 @@
+.flexbox .col{
+    display:none;
+}
+#loadMore {
+    color:green;
+    cursor:pointer;
+}
+#loadMore:hover {
+    color:black;
+}
+#showLess {
+    cursor:pointer;
+}
+
+.text-del {
+    text-decoration: line-through;
+}
+
+.discount-font {
+    font-size: 35px;
+}

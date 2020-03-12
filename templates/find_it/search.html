@@ -1,37 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
 <div class="container px-10">
     <div class="row">
-        <div class="input-field col l10 s12">
-            <input autocomplete="off" placeholder="Search" id="search" required name="find" type="text"
-                   class="validate">
-            <label for="search">Cari Produk</label>
-        </div>
-        <div class="file-field input-field col l2 s12">
-            <button class="btn waves-effect waves-light blue darken-4 width-100-percent" type="submit">Search</button>
-        </div>
+        <form action="{% url 'find_it:search' %}">
+            <div class="input-field col l10 s12">
+                <input autocomplete="off" placeholder="Search" id="search" required name="find" type="text"
+                       class="validate">
+                <label for="search">Cari Produk</label>
+            </div>
+            <div class="file-field input-field col l2 s12">
+                <button class="btn waves-effect waves-light blue darken-4 width-100-percent" type="submit">Search
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col m6 offset-m6">
+        <div class="col m6">
+            <p>Searched: <b>{{ searched }}</b> - Find It</p>
+        </div>
+        <div class="col m6">
             <div class="row">
-                <div class="input-field col m8">
-                    <select>
-                        <option value="" disabled selected>Pilih</option>
-                        <option value="relevant">Relevansi</option>
-                        <option value="price-high">Harga Tertinggi</option>
-                        <option value="price-low">Harga Terendah</option>
-                    </select>
-                    <label>Urutkan Berdasarkan</label>
-                </div>
-                <div class="file-field input-field col m4">
-                    <button class="btn waves-effect waves-light grey darken-4 width-100-percent">Terapkan</button>
-                </div>
+                <form action="{% url 'find_it:search' %}">
+                    <div class="input-field col m8">
+                        <input type="hidden" name="find" value="{{searched}}">
+                        <select name="sort">
+                            <option value="" disabled selected>Pilih</option>
+                            <option value="relevant">Relevansi</option>
+                            <option value="price-high">Harga Tertinggi</option>
+                            <option value="price-low">Harga Terendah</option>
+                        </select>
+                        <label>Urutkan Berdasarkan</label>
+                    </div>
+                    <div class="file-field input-field col m4">
+                        <button type="submit" class="btn waves-effect waves-light grey darken-4 width-100-percent">
+                            Terapkan
+                        </button>
+                    </div>
+                </form>
             </div>
-
         </div>
     </div>
 </div>
@@ -45,7 +56,7 @@
     <div class="col s12 m8 l9">
 
         <div class="flexbox">
-            {% for title, price, image, location, date, source in products %}
+            {% for title, price, image, location, link, source in products %}
             <div class="col">
                 <div class="card">
                     <div class="card-image">
@@ -53,35 +64,75 @@
                     </div>
                     <div class="card-content">
                         <p>{{ title|title }}</p>
-                        <p><small>{{ date }}</small></p>
                         <hr>
                         <div class="row">
                             <div class="col">
-                                <p><b>{{ price }}</b></p>
+                                <p><b>Rp. {{ price|intcomma }}</b></p>
                                 <p><small>{{ location }}</small></p>
-                            </div>
-                            <div class="col" style="float: right">
-                                {% if source == 'olx' %}
-                                <img style="height: 40px" class="img-fluid"
-                                     src="{% static 'img/ecommerce/olx-logo.png' %}"
-                                     alt="">
-                                {% else %}
-                                <img style="height: 30px; float: right" class="img-fluid"
-                                     src="{% static 'img/ecommerce/uqi.jpg' %}"
-                                     alt="">
-                                {% endif %}
                             </div>
                         </div>
                     </div>
                     <div class="card-action">
                         <a class="waves-effect waves-light btn-small mx-3 blue darken-4 white-text"
-                           href="#">Kunjungi</a>
+                           href="{{ link }}">Kunjungi</a>
+                        <div class="col" style="float: right">
+                            {% if source == 'olx' %}
+                            <img style="height: 40px" class="img-fluid"
+                                 src="{% static 'img/ecommerce/olx-logo.png' %}"
+                                 alt="">
+                            {% elif source == 'uqshop' %}
+                            <img style="height: 30px; float: right" class="img-fluid"
+                                 src="{% static 'img/ecommerce/uqi.jpg' %}"
+                                 alt="">
+                            {% elif source == 'elevenia' %}
+                            <img style="height: 30px; float: right" class="img-fluid"
+                                 src="{% static 'img/ecommerce/elevenia.jpg' %}"
+                                 alt="">
+                            {% else %}
+                            <img style="height: 30px; float: right" class="img-fluid"
+                                 src="{% static 'img/ecommerce/sorabel.jpg' %}"
+                                 alt="">
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+</div>
+
+
+<div class="container text-center">
+    {% if products.has_other_pages %}
+    <form action="">
+        <input type="hidden" name="find" value="{{ searched }}">
+        <input type="hidden" name="sort" value="{{ sort_by }}">
+        <ul class="pagination">
+            {% if products.has_previous %}
+            <li>
+                <button class="btn-small grey darken-3" type="submit" name="page" value="{{ products.previous_page_number }}"><i class="material-icons">chevron_left</i></button>
+            </li>
+            {% else %}
+                <li><button class="disabled btn-small material-icons">chevron_left</button></li>
+            {% endif %}
+            {% for i in products.paginator.page_range %}
+                {% if products.number == i %}
+                    <li class="active"><button class="btn-small grey darken-4">{{ i }}</button></li>
+                {% else %}
+                    <li>
+                        <button class="btn-small grey" type="submit" name="page" value="{{ i }}">{{ i }}</button>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if products.has_next %}
+                <li><button class="btn-small grey darken-3" type="submit" name="page" value="{{ products.next_page_number }}"><i class="material-icons">chevron_right</i></button></li>
+            {% else %}
+                <li><button class="disabled btn-small material-icons">chevron_right</button></li>
+            {% endif %}
+        </ul>
+    </form>
+    {% endif %}
 </div>
 
 {% endblock content %}
