@@ -1,23 +1,20 @@
 <nav class="white">
     <div class="container">
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo black-text font-lobster">Find It</a>
+            <a href="/" class="brand-logo black-text font-lobster">Find It</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="black-text material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a class="black-text font-yahonee" href="/">Home</a></li>
-                <li><a class="black-text font-yahonee" href="badges.html">Kategori</a></li>
-                <li><a class="black-text font-yahonee" href="collapsible.html">Promo</a></li>
                 <li><a class="black-text font-yahonee" href="{% url 'flash_it:flashsale' %}">Flash Sale</a></li>
-                <li><a class="black-text font-yahonee" href="mobile.html">About Us</a></li>
+                <li><a class="black-text font-yahonee" href="{% url 'find_it:about' %}">About Us</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
-    <li><a class="black-text font-yahonee" href="sass.html">Home</a></li>
-    <li><a class="black-text font-yahonee" href="badges.html">Kategori</a></li>
-    <li><a class="black-text font-yahonee" href="collapsible.html">Promo</a></li>
-    <li><a class="black-text font-yahonee" href="mobile.html">Flash Sale</a></li>
-    <li><a class="black-text font-yahonee" href="mobile.html">About Us</a></li>
+    <li><a class="black-text font-yahonee" href="/">Home</a></li>
+    <li><a class="black-text font-yahonee" href="#">Kategori</a></li>
+    <li><a class="black-text font-yahonee" href="{% url 'flash_it:flashsale' %}">Flash Sale</a></li>
+    <li><a class="black-text font-yahonee" href="{% url 'find_it:about' %}">About Us</a></li>
 </ul>

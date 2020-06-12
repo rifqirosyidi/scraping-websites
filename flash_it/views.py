@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .functions import handle_elevenia_flashsale
+from .functions import handle_elevenia_flashsale, handle_uqshop_flashsale
 
 
 # Create your views here.
@@ -9,14 +9,18 @@ def flashsale(request):
     headers = {'User-Agent': user_agent}
 
     ele_url = 'https://www.elevenia.co.id/daily-deals'
+    uqi_url = 'https://www.uqishop.com/'
 
     # Zip Object
     ele_list = handle_elevenia_flashsale(ele_url, headers)
+    uqi_list = handle_uqshop_flashsale(uqi_url, headers)
 
     # Convert To List
-    flash_list = list(ele_list)
+    ele_flash = list(ele_list)
+    uqi_flash = list(uqi_list)
 
     context = {
-        'flash_sale': flash_list
+        'ele_flash': ele_flash,
+        'uqi_flash': uqi_flash
     }
     return render(request, 'flash_it/flashsale.html', context)

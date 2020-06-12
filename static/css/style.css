@@ -81,6 +81,20 @@
     text-align: center;
 }
 
+.text-indent {
+    text-indent: 50px;
+}
+
+.text-justify {
+    text-align: justify;x
+}
+
+.alert-red {
+    padding: 15px;
+    border-radius: 5px;
+    width: 100%;
+}
+
 /* label color */
    .input-field label {
      color: #000;

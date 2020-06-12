@@ -2,6 +2,8 @@ import os
 import difflib
 import csv
 from itertools import chain
+
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from selenium import webdriver
@@ -99,6 +101,7 @@ def search(request):
                 elif sort_by == 'price-high':
                     my_list = sorted(cleaned_list, key=itemgetter(1), reverse=True)
 
+            # Render The Content with pagination, 12/page
             paginator = Paginator(my_list, 12)
             try:
                 my_list = paginator.page(page)
@@ -128,14 +131,8 @@ def search(request):
         return render(request, 'find_it/search.html')
 
 
-# def search(request):
-#     sources = MarketplaceSource.objects.all()
-#
-#     context = {
-#         'sources': sources,
-#         'searched': 'Xiaomi Redmi 3s'
-#     }
-#     return render(request, 'find_it/search.html', context)
+def about(request):
+    return render(request, 'find_it/about.html')
 
 
 

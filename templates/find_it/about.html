@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customlink %}
+<link rel="stylesheet" href="{% static 'css/style_flash.css' %}">
+<script src="{% static 'js/loadmore.js' %}"></script>
+{% endblock customlink%}
+
+
+{% block content %}
+<div class="container">
+    <h4 class="text-center font-londrina px-15">About Us</h4>
+    <blockquote class="font-fresca size-font-16">
+        Find It membantu anda dalam menemukan produk dari berbagai macam toko online
+    </blockquote>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="{% static 'img/header-2.jpg' %}"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col m6">
+            <h1 class="font-lobster">Find It</h1>
+            <p>Learn about Find It and our Project.</p>
+            <hr>
+            <p class="text-justify text-indent">Jika ada satu hal yang paling menyebalkan pada saat berbelanja online adalah menghabiskan waktu berjam-jam untuk mencari penawaran terbaik dari berbagai toko online. Secara efektif Telunjuk.com memberikan efisiensi waktu dalam mencari dan memilih barang yang diinginkan. Sehingga kamu tidak perlu lagi membuka banyak website karena kami sudah mengumpulkan lebih dari empat puluh juta produk. Anda tinggal mencari dan kami akan menampilkan rekomendasi belanja terbaiknya, lalu selesaikan transaksi di toko online tersebut. </p>
+        </div>
+        <div class="col m6">
+            <h1 class="font-lobster">Find Us</h1>
+            <p>Get in Touch with Us</p>
+            <hr>
+            <form action="">
+                <div class="input-field col s12">
+                  <input id="email" type="email" class="validate">
+                  <label for="email">Email</label>
+                  <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                </div>
+                <div class="input-field col s12">
+                  <input id="title" type="text" class="validate">
+                  <label for="title">Header</label>
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+                    <label for="textarea2">Content</label>
+                </div>
+                <button class="btn waves-effect">Sumbit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock content %}

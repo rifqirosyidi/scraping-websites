@@ -1,6 +1,7 @@
 .flexbox .col{
     display:none;
 }
+
 #loadMore {
     color:green;
     cursor:pointer;

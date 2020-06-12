@@ -30,7 +30,7 @@
 
     <div class="row">
         <div id="myList" class="flexbox">
-            {% for title, discount, price_before, price, image, source in flash_sale %}
+            {% for title, discount, price_before, price, image, source in ele_flash %}
             <div id="itemList" class="col">
                 <div class="card">
                     <div class="card-image">
@@ -59,6 +59,37 @@
             <button id="showMore" class="btn waves-effect waves-light blue darken-3">Show More</button>
             <button id="showLess" class="btn waves-effect waves-light grey">Less</button>
         </div>
+    </div>
+</section>
+
+<!-- Uqishop Flashsale-->
+
+<section>
+    <div class="container">
+        <h5 class="font-londrina">UqShop Best Seller</h5>
+    </div>
+
+    <div class="row">
+            {% for title, image, price_before, price in uqi_flash %}
+            <div id="listUq" class="col m3">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-height-200" src="{{ image }}">
+                        <span class="card-title source-title">{{ title |truncatechars:40 }}</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <small class="grey-text text-del">{{ price_before }}</small>
+                            <p><b>{{ price }}</b></p>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a class="waves-effect waves-light btn-small mx-3 blue darken-4 white-text"
+                           href="#">Kunjungi</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
     </div>
 </section>
 

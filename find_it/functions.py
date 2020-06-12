@@ -3,29 +3,6 @@ from requests import ConnectionError
 import requests
 
 
-def handle_uqshop(target_url, header_url):
-    try:
-        page = requests.get(target_url, headers=header_url)
-    except ConnectionError as err:
-        print(err)
-
-    tree = html.fromstring(page.content)
-
-    title = tree.xpath('//h2[@class="woocommerce-loop-product__title"]/text()')
-    price = tree.xpath('//span[@class="price"]/ins/span/text()')
-    image = tree.xpath('//div[@class="product-image-box"]/a/img/@src')
-    location = []
-    link = tree.xpath('//a[@class="product-detail-link"]/@href')
-    source = []
-
-
-    for i in range(len(title)):
-        location.append("Malang, Jawa Timur")
-        source.append('uqshop')
-
-    return zip(title, price, image, location, link, source)
-
-
 def handle_olx(target_url, header_url):
     try:
         page = requests.get(target_url, headers=header_url)
@@ -46,6 +23,29 @@ def handle_olx(target_url, header_url):
     source = []
     for i in range(len(title)):
         source.append('olx')
+
+    return zip(title, price, image, location, link, source)
+
+
+def handle_uqshop(target_url, header_url):
+    try:
+        page = requests.get(target_url, headers=header_url)
+    except ConnectionError as err:
+        print(err)
+
+    tree = html.fromstring(page.content)
+
+    title = tree.xpath('//h2[@class="woocommerce-loop-product__title"]/text()')
+    price = tree.xpath('//span[@class="price"]/ins/span/text()')
+    image = tree.xpath('//div[@class="product-image-box"]/a/img/@src')
+    location = []
+    link = tree.xpath('//a[@class="product-detail-link"]/@href')
+    source = []
+
+
+    for i in range(len(title)):
+        location.append("Malang, Jawa Timur")
+        source.append('uqshop')
 
     return zip(title, price, image, location, link, source)
 

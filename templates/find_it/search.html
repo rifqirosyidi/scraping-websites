@@ -56,48 +56,52 @@
     <div class="col s12 m8 l9">
 
         <div class="flexbox">
-            {% for title, price, image, location, link, source in products %}
-            <div class="col">
-                <div class="card">
-                    <div class="card-image">
-                        <img class="img-height-200" src="{{ image }}">
-                    </div>
-                    <div class="card-content">
-                        <p>{{ title|title }}</p>
-                        <hr>
-                        <div class="row">
-                            <div class="col">
-                                <p><b>Rp. {{ price|intcomma }}</b></p>
-                                <p><small>{{ location }}</small></p>
+            {% if products %}
+                {% for title, price, image, location, link, source in products %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-height-200" src="{{ image }}">
+                        </div>
+                        <div class="card-content">
+                            <p>{{ title|title }}</p>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <p><b>Rp. {{ price|intcomma }}</b></p>
+                                    <p><small>{{ location }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <a class="waves-effect waves-light btn-small mx-3 blue darken-4 white-text"
+                               href="{{ link }}" target="_blank">Kunjungi</a>
+                            <div class="col" style="float: right">
+                                {% if source == 'olx' %}
+                                <img style="height: 40px" class="img-fluid"
+                                     src="{% static 'img/ecommerce/olx-logo.png' %}"
+                                     alt="">
+                                {% elif source == 'uqshop' %}
+                                <img style="height: 30px; float: right" class="img-fluid"
+                                     src="{% static 'img/ecommerce/uqi.jpg' %}"
+                                     alt="">
+                                {% elif source == 'elevenia' %}
+                                <img style="height: 30px; float: right" class="img-fluid"
+                                     src="{% static 'img/ecommerce/elevenia.jpg' %}"
+                                     alt="">
+                                {% else %}
+                                <img style="height: 30px; float: right" class="img-fluid"
+                                     src="{% static 'img/ecommerce/sorabel.jpg' %}"
+                                     alt="">
+                                {% endif %}
                             </div>
                         </div>
                     </div>
-                    <div class="card-action">
-                        <a class="waves-effect waves-light btn-small mx-3 blue darken-4 white-text"
-                           href="{{ link }}">Kunjungi</a>
-                        <div class="col" style="float: right">
-                            {% if source == 'olx' %}
-                            <img style="height: 40px" class="img-fluid"
-                                 src="{% static 'img/ecommerce/olx-logo.png' %}"
-                                 alt="">
-                            {% elif source == 'uqshop' %}
-                            <img style="height: 30px; float: right" class="img-fluid"
-                                 src="{% static 'img/ecommerce/uqi.jpg' %}"
-                                 alt="">
-                            {% elif source == 'elevenia' %}
-                            <img style="height: 30px; float: right" class="img-fluid"
-                                 src="{% static 'img/ecommerce/elevenia.jpg' %}"
-                                 alt="">
-                            {% else %}
-                            <img style="height: 30px; float: right" class="img-fluid"
-                                 src="{% static 'img/ecommerce/sorabel.jpg' %}"
-                                 alt="">
-                            {% endif %}
-                        </div>
-                    </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <p class="text-center p-5 red lighten-4 alert-red">Search : <b>{{ searched }}</b> Not Found! </p>
+            {% endif %}
         </div>
     </div>
 </div>
