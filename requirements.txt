@@ -10,7 +10,7 @@ fake-useragent==0.1.11
 idna==2.8
 lxml==4.6.3
 parse==1.14.0
-Pillow==7.0.0
+Pillow==8.1.1
 pyee==7.0.1
 pyppeteer==0.0.25
 pyquery==1.4.1
